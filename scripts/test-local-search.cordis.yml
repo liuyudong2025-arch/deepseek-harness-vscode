@@ -1,0 +1,15 @@
+- id: web-search-deepseek
+  disabled: true
+- insert:
+    - id: mcp-local-web-search
+      name: '@deepseek-ai/dsh-mcp-client'
+      config:
+        serverName: localWeb
+        transport: stdio
+        command: node
+        args:
+          - mcp/local-web-search-server.js
+        env:
+          LOCAL_SEARCH_PROVIDER: bing
+        toolCallTimeoutMs: 60000
+        failOnStartupError: true

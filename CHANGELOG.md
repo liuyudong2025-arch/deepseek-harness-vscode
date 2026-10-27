@@ -1,5 +1,12 @@
 # Changelog
 
+## 0.5.1
+
+- Added an optional bundled local web-search MCP for Companion-launched Harness sessions.
+- Added keyless Bing RSS and DuckDuckGo backends plus self-hosted SearXNG.
+- Added an invocation-scoped overlay that disables the paid DeepSeek search provider while local search is enabled.
+- Added local public-page fetching with SSRF checks, redirect validation, timeouts, and size limits.
+
 ## 0.4.8
 
 - Change the Marketplace extension name to the unique ID `matrix-deepseek-harness-companion`.

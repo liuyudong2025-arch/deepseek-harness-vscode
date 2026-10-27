@@ -1,8 +1,8 @@
 {
   "name": "matrix-deepseek-harness-companion",
-  "displayName": "DeepSeek Harness Companion",
-  "description": "Run the official DeepSeek Harness locally from VS Code.",
-  "version": "0.4.8",
+  "displayName": "DeepSeek Harness Companion + Local Search",
+  "description": "Run DeepSeek Harness in VS Code with optional keyless local MCP web search instead of DeepSeek Search/Fetch.",
+  "version": "0.5.1",
   "publisher": "matrix-oai-compatible-copilot-provider",
   "license": "MIT",
   "icon": "media/icon.png",
@@ -25,7 +25,12 @@
     "agent",
     "coding",
     "assistant",
-    "ai"
+    "ai",
+    "web search",
+    "local search",
+    "mcp",
+    "search",
+    "fetch"
   ],
   "capabilities": {
     "untrustedWorkspaces": {
@@ -132,12 +137,47 @@
           "type": "boolean",
           "default": true,
           "description": "Hide the Preview badge in the embedded Harness interface. This does not change the upstream release status."
+        },
+        "deepseekHarness.localSearch.enabled": {
+          "type": "boolean",
+          "default": false,
+          "description": "Use the bundled local-search MCP and disable the paid DeepSeek web-search provider for Companion-launched Harness sessions."
+        },
+        "deepseekHarness.localSearch.provider": {
+          "type": "string",
+          "enum": ["bing", "duckduckgo", "searxng"],
+          "default": "bing",
+          "description": "Local search backend. Bing RSS and DuckDuckGo require no key; SearXNG uses your configured instance."
+        },
+        "deepseekHarness.localSearch.searxngUrl": {
+          "type": "string",
+          "default": "http://127.0.0.1:8080",
+          "description": "SearXNG base URL. Its JSON search format must be enabled."
+        },
+        "deepseekHarness.localSearch.nodePath": {
+          "type": "string",
+          "default": "node",
+          "description": "Node.js 24.5+ executable used to launch the bundled local-search MCP server and honor HTTP(S)_PROXY."
+        },
+        "deepseekHarness.localSearch.timeoutMs": {
+          "type": "number",
+          "default": 20000,
+          "minimum": 1000,
+          "maximum": 120000,
+          "description": "Timeout for each search or page fetch."
+        },
+        "deepseekHarness.localSearch.maxFetchBytes": {
+          "type": "number",
+          "default": 2097152,
+          "minimum": 65536,
+          "maximum": 10485760,
+          "description": "Maximum number of bytes read from one web page."
         }
       }
     }
   },
   "scripts": {
-    "check": "node --check extension.js && node scripts/validate-publish.js --allow-local",
+    "check": "node --check extension.js && node --check mcp/local-web-search-server.js && node scripts/test-local-web-search.js && node scripts/validate-publish.js --allow-local",
     "publish:check": "node scripts/validate-publish.js",
     "package": "npm run check && npx @vscode/vsce package",
     "publish": "npm run publish:check && npx @vscode/vsce publish"

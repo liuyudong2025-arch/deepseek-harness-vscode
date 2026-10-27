@@ -8,4 +8,6 @@
 
 Harness can edit files and execute commands. Review permissions, plugins, MCP servers, and model providers before use.
 
-Before publishing, add your security contact here.
+Please report security issues privately through the contact channel on the
+[publisher's Marketplace profile](https://marketplace.visualstudio.com/publishers/matrix-oai-compatible-copilot-provider).
+Do not disclose a vulnerability in a public review.
