@@ -1,0 +1,20 @@
+:root { color-scheme: light dark; }
+* { box-sizing: border-box; }
+html, body { width: 100%; height: 100%; margin: 0; color: var(--vscode-foreground); background: var(--vscode-sideBar-background); font-family: var(--vscode-font-family); }
+body { overflow: hidden; }
+#welcome { padding: 20px 16px; }
+.brand { width: 56px; height: 56px; display: block; margin: 2px 0 12px; }
+h2 { margin: 0 0 10px; font-size: 16px; }
+p { color: var(--vscode-descriptionForeground); line-height: 1.5; }
+.actions { display: flex; gap: 8px; margin-top: 16px; }
+button { border: 0; border-radius: 3px; padding: 7px 11px; color: var(--vscode-button-foreground); background: var(--vscode-button-background); cursor: pointer; }
+button:hover { background: var(--vscode-button-hoverBackground); }
+button.secondary { color: var(--vscode-button-secondaryForeground); background: var(--vscode-button-secondaryBackground); }
+button.link { padding-left: 0; color: var(--vscode-textLink-foreground); background: transparent; }
+.fineprint { margin-top: 16px; font-size: 11px; opacity: .8; }
+#running { width: 100%; height: 100%; }
+#running[hidden] { display: none; }
+header { height: 34px; display: flex; align-items: center; gap: 4px; padding: 3px 6px 3px 10px; border-bottom: 1px solid var(--vscode-panel-border); color: var(--vscode-descriptionForeground); }
+header .spacer { flex: 1; }
+header button { padding: 3px 7px; color: var(--vscode-icon-foreground); background: transparent; font-size: 16px; }
+iframe { display: block; width: 100%; height: calc(100% - 34px); border: 0; background: #fff; }
